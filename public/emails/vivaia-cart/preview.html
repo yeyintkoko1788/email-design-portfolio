@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="x-apple-disable-message-reformatting">
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">
+  <title>Still thinking about them?</title>
+  <!--[if mso]>
+  <noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>
+  <![endif]-->
+  <style>
+    body { margin: 0; padding: 0; width: 100% !important; background: #FFFFFF; -webkit-text-size-adjust: 100%; }
+    table { border-collapse: collapse; mso-table-lspace: 0; mso-table-rspace: 0; }
+    img { border: 0; display: block; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; }
+    a { color: #000000; }
+
+    /* Phones: full-width card and button, a little less side space */
+    @media screen and (max-width: 480px) {
+      .px { padding-left: 20px !important; padding-right: 20px !important; }
+      .full { width: 100% !important; max-width: 100% !important; }
+      .product-img { width: 100% !important; max-width: 262px !important; height: auto !important; }
+      .rec-cell { padding: 0 5px !important; }
+      .rec-img { width: 100% !important; height: auto !important; }
+      .h1 { font-size: 27px !important; line-height: 33px !important; }
+    }
+  </style>
+</head>
+<body style="margin:0;padding:0;background:#FFFFFF;">
+  <!--
+    VIVAIA · Abandoned cart flow · Email 1
+    Klaviyo trigger: Started Checkout (Shopify). Tags used:
+      event.extra.line_items   the products left in the cart
+      event.extra.checkout_url the link back to their checkout
+      event|lookup:'$value'    the cart total (free-shipping line)
+    Before sending: upload the images in /images to Klaviyo's image library
+    and replace each src="images/..." with its hosted URL.
+  -->
+
+  <!-- Preview text: the grey line next to the subject in the inbox -->
+  <div style="display:none;font-size:1px;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;">
+    Your favorites are still in your cart. Free returns for 30 days.
+    &#847; &zwnj; &nbsp; &#847; &zwnj; &nbsp; &#847; &zwnj; &nbsp; &#847; &zwnj; &nbsp; &#847; &zwnj; &nbsp;
+  </div>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FFFFFF;">
+    <tr>
+      <td align="center">
+        <!--[if mso]><table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;font-family:Helvetica,Arial,sans-serif;color:#000000;">
+
+          <!-- Logo -->
+          <tr>
+            <td align="center" style="padding:19px 0 20px;border-bottom:1px solid #F6DCE3;">
+              <a href="https://www.vivaia.com/" target="_blank">
+                <img src="images/logo.png" width="121" height="26" alt="VIVAIA">
+              </a>
+            </td>
+          </tr>
+
+          <!-- Headline -->
+          <tr>
+            <td class="px" align="center" style="padding:52px 40px 0;">
+              <h1 class="h1" style="margin:0;font-size:30px;line-height:36px;font-weight:bold;">Still thinking about them?</h1>
+              <p style="margin:14px 0 0;font-size:17px;line-height:24px;">Your favorites are waiting in your cart.</p>
+            </td>
+          </tr>
+
+          <!-- Cart items (one card per item, from Klaviyo's Started Checkout event) -->
+          
+          <tr>
+            <td class="px" align="center" style="padding:31px 40px 0;">
+              <table role="presentation" class="full" width="364" cellpadding="0" cellspacing="0" border="0" style="width:364px;border:1px solid #EBDBDC;">
+                <tr>
+                  <td align="center" style="padding:32px 20px 37px;">
+                    <a href="#" target="_blank">
+                      <img class="product-img" src="images/product.png" width="262" height="262" alt="Margot Mary Jane" style="width:262px;height:262px;">
+                    </a>
+                    <p style="margin:30px 0 0;font-size:19px;line-height:24px;font-weight:bold;">Margot Mary Jane</p>
+                    <p style="margin:12px 0 0;font-size:17px;line-height:22px;">Black &nbsp;&middot;&nbsp; Size 38 &nbsp;&middot;&nbsp; Qty. 1</p>
+                    <p style="margin:16px 0 0;font-size:17px;line-height:22px;font-weight:bold;">$129</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          
+
+          <!-- Button (a plain table cell, so it also works in Outlook) -->
+          <tr>
+            <td class="px" align="center" style="padding:32px 40px 0;">
+              <table role="presentation" class="full" width="364" cellpadding="0" cellspacing="0" border="0" style="width:364px;">
+                <tr>
+                  <td align="center" bgcolor="#000000" style="background:#000000;">
+                    <a href="#" target="_blank" style="display:block;padding:11px 20px;font-size:17px;line-height:22px;font-weight:bold;color:#FFFFFF;text-decoration:none;">Complete My Order</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Free shipping: only when the cart is over $99 -->
+          
+          <tr>
+            <td class="px" align="center" style="padding:19px 40px 0;font-size:17px;line-height:24px;">
+              <strong>Good news:</strong> this order ships free.
+            </td>
+          </tr>
+          
+
+          <!-- Reassurance -->
+          <tr>
+            <td class="px" align="center" style="padding:26px 40px 0;font-size:13px;line-height:26px;color:#7B8087;">
+              Free shipping over $99<br>
+              30-day free returns<br>
+              Machine washable
+            </td>
+          </tr>
+
+          <!-- Review -->
+          <tr>
+            <td class="px" align="center" style="padding:50px 40px 0;">
+              <table role="presentation" class="full" width="436" cellpadding="0" cellspacing="0" border="0" style="width:436px;background:#EBDBDC;">
+                <tr>
+                  <td align="center" bgcolor="#EBDBDC" style="padding:32px 24px 34px;background:#EBDBDC;">
+                    <p style="margin:0;font-size:20px;line-height:24px;letter-spacing:14px;color:#DA95A9;">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+                    <p style="margin:14px 0 0;font-size:15px;line-height:20px;font-weight:bold;">&ldquo;Perfect balance between comfort and look!&rdquo;</p>
+                    <p style="margin:16px 0 0;font-size:12px;line-height:18px;color:#434A54;">Emily T. &middot; Verified buyer</p>
+                    <p style="margin:2px 0 0;font-size:12px;line-height:18px;color:#434A54;">Rated 4.8 out of 5 by 8,000+ customers</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Recommendations -->
+          <tr>
+            <td class="px" align="center" style="padding:46px 38px 0;">
+              <p style="margin:0 0 24px;font-size:17px;line-height:22px;font-weight:bold;">You might also like</p>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="table-layout:fixed;">
+                <tr>
+                  <td class="rec-cell" width="33%" valign="top" style="padding:0 8px 0 0;">
+                    <a href="https://www.vivaia.com/" target="_blank"><img class="rec-img" src="images/rec-1.png" width="163" alt="Bow Flats" style="width:163px;"></a>
+                    <p style="margin:12px 0 0;font-size:13px;line-height:18px;"><a href="https://www.vivaia.com/" target="_blank" style="color:#000000;text-decoration:none;">Bow Flats</a></p>
+                    <p style="margin:4px 0 0;font-size:13px;line-height:18px;font-weight:bold;">$119</p>
+                  </td>
+                  <td class="rec-cell" width="34%" valign="top" style="padding:0 4px;">
+                    <a href="https://www.vivaia.com/" target="_blank"><img class="rec-img" src="images/rec-2.png" width="163" alt="Penny Loafers" style="width:163px;"></a>
+                    <p style="margin:12px 0 0;font-size:13px;line-height:18px;"><a href="https://www.vivaia.com/" target="_blank" style="color:#000000;text-decoration:none;">Penny Loafers</a></p>
+                    <p style="margin:4px 0 0;font-size:13px;line-height:18px;font-weight:bold;">$129</p>
+                  </td>
+                  <td class="rec-cell" width="33%" valign="top" style="padding:0 0 0 8px;">
+                    <a href="https://www.vivaia.com/" target="_blank"><img class="rec-img" src="images/rec-3.png" width="163" alt="Ribbon Sneakers" style="width:163px;"></a>
+                    <p style="margin:12px 0 0;font-size:13px;line-height:18px;"><a href="https://www.vivaia.com/" target="_blank" style="color:#000000;text-decoration:none;">Ribbon Sneakers</a></p>
+                    <p style="margin:4px 0 0;font-size:13px;line-height:18px;font-weight:bold;">$109</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:42px 0 0;"><div style="border-top:1px solid #F6DCE3;font-size:0;line-height:0;">&nbsp;</div></td>
+          </tr>
+          <tr>
+            <td class="px" align="center" style="padding:22px 40px 0;font-size:14.5px;line-height:22px;">
+              <a href="https://www.vivaia.com/" target="_blank" style="color:#000000;">Flats</a> &nbsp;|&nbsp;
+              <a href="https://www.vivaia.com/" target="_blank" style="color:#000000;">Loafers</a> &nbsp;|&nbsp;
+              <a href="https://www.vivaia.com/" target="_blank" style="color:#000000;">Sneakers</a> &nbsp;|&nbsp;
+              <a href="https://www.vivaia.com/" target="_blank" style="color:#000000;">Bags &amp; Accs</a>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="padding:51px 0 0;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="padding:0 12.5px;"><a href="https://www.facebook.com/" target="_blank"><img src="images/social-1.png" width="39" height="39" alt="Facebook"></a></td>
+                  <td style="padding:0 12.5px;"><a href="https://www.instagram.com/" target="_blank"><img src="images/social-2.png" width="39" height="39" alt="Instagram"></a></td>
+                  <td style="padding:0 12.5px;"><a href="https://www.pinterest.com/" target="_blank"><img src="images/social-3.png" width="39" height="39" alt="Pinterest"></a></td>
+                  <td style="padding:0 12.5px;"><a href="https://www.vivaia.com/" target="_blank"><img src="images/social-4.png" width="39" height="39" alt="Community"></a></td>
+                  <td style="padding:0 12.5px;"><a href="https://www.youtube.com/" target="_blank"><img src="images/social-5.png" width="39" height="39" alt="YouTube"></a></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="px" align="center" style="padding:50px 40px 0;font-size:12px;line-height:18px;color:#434A54;">
+              Questions about your order? <a href="https://www.vivaia.com/" target="_blank" style="color:#000000;font-weight:bold;">Contact Us</a><br>
+              <a href="https://www.vivaia.com/" target="_blank" style="color:#434A54;">Privacy Policy</a> &nbsp;|&nbsp;
+              <a href="https://www.vivaia.com/" target="_blank" style="color:#434A54;">Terms of Use</a> &nbsp;|&nbsp;
+              <a href="#" target="_blank" style="color:#434A54;">Unsubscribe</a>
+            </td>
+          </tr>
+          <tr>
+            <td class="px" align="center" style="padding:20px 40px 30px;font-size:12px;line-height:18px;color:#434A54;">
+              &copy; 2026 VIVAIA. All Rights Reserved.<br>
+              
+            </td>
+          </tr>
+
+        </table>
+        <!--[if mso]></td></tr></table><![endif]-->
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

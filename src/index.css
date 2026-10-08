@@ -1,0 +1,332 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #F7F4EE;     /* hero / home */
+  --color-paper-2: #F4EEE3;   /* inner pages */
+  --color-paper-back: #ECE4D5; /* back of a turning page */
+  --color-ink: #1a1a1a;
+  --color-night: #3A3633;     /* warm dark grey for dark blocks (softer than ink) */
+  --color-accent: #B8322A;    /* the only accent */
+  --color-ph: #e3dacb;        /* image placeholder */
+  --color-line: #d6ccbb;
+
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'AR One Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, Menlo, Consolas, monospace;
+  --font-hand: 'Caveat', 'Bradley Hand', cursive;
+
+  --ease-bounce: cubic-bezier(.2, 1.4, .4, 1);
+  --ease-spring: cubic-bezier(.3, 1.6, .5, 1);
+  --ease-flip: cubic-bezier(.65, .05, .25, 1);
+}
+
+/* Short phones (iPhone SE and similar): slightly tighter spacing and type */
+@custom-variant short (@media (max-height: 740px) and (max-width: 767px));
+
+@font-face {
+  font-family: 'AR One Sans';
+  src: url('/fonts/AROneSans-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('/fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('/fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 400 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+html {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  scroll-padding-top: 64px;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+}
+
+/* Paper texture: a cold-press paper photo, tiled seamlessly and multiplied into
+   the cream, so it lives in the paper itself. Images, video and text sit on top
+   and stay clean. Applied to every paper-coloured surface. */
+:root {
+  --paper-texture: url('/textures/paper.jpg');
+  --paper-texture-size: 800px auto;
+}
+body,
+.bg-paper,
+.bg-paper-2,
+.bg-paper-back,
+.pg {
+  background-image: var(--paper-texture);
+  background-size: var(--paper-texture-size);
+  background-blend-mode: multiply;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-paper);
+}
+
+@layer components {
+/* ── Type ─────────────────────────────────────────────────────────────── */
+
+/* Small ALL CAPS label: the tiny half of the "giant vs tiny" contrast */
+.label {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+@media (min-width: 1024px) {
+  .label { font-size: 10px; }
+}
+
+.headline {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+.outline-num {
+  font-family: var(--font-serif);
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-ink);
+  line-height: 1;
+}
+
+.page-px {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+@media (min-width: 768px) {
+  .page-px { padding-left: 48px; padding-right: 48px; }
+}
+@media (min-width: 1280px) {
+  .page-px { padding-left: 80px; padding-right: 80px; }
+}
+
+/* ── Bouncy text reveal ───────────────────────────────────────────────── */
+/* Add .rv to an element; it springs in when an ancestor gets .show.
+   Stagger with style="--i: n" (0.1s per step). */
+.rv {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity .6s ease,
+    transform .7s var(--ease-bounce);
+  transition-delay: calc(var(--i, 0) * .1s);
+}
+.show .rv,
+.rv.show {
+  opacity: 1;
+  transform: none;
+}
+
+/* Sticker entrance: a collage piece is pressed onto the page. It starts a
+   little big and twisted (--r), then settles with a bounce. Delay with --d. */
+.pop {
+  opacity: 0;
+  transform: scale(1.25) rotate(var(--r, -6deg));
+  transition:
+    opacity .25s ease,
+    transform .75s var(--ease-bounce);
+  transition-delay: var(--d, 0s);
+}
+.show .pop {
+  opacity: 1;
+  transform: none;
+}
+
+/* A hand-drawn line that draws itself when its page is shown */
+.draw-path path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.8s cubic-bezier(.45, 0, .2, 1) .8s;
+}
+.show .draw-path path {
+  stroke-dashoffset: 0;
+}
+
+/* Index row hover: slide right and turn red */
+.index-row {
+  transition:
+    padding-left .35s var(--ease-spring),
+    color .3s ease;
+}
+.index-row:hover {
+  padding-left: 10px;
+  color: var(--color-accent);
+}
+
+/* ── Page flip ────────────────────────────────────────────────────────── */
+.flip-stack {
+  position: relative;
+  perspective: 2000px;
+}
+.flip-sheet {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 1s var(--ease-flip);
+}
+.flip-sheet.is-flipped {
+  transform: rotateY(-180deg);
+}
+.flip-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-back {
+  transform: rotateY(180deg);
+}
+.flip-back-blank {
+  background: var(--paper-texture) 0 0 / var(--paper-texture-size), linear-gradient(90deg, var(--color-paper-back), #F1EADD 70%);
+  background-blend-mode: multiply;
+}
+
+/* Book: sheets sit on the right half and turn around the spine */
+.book-sheet {
+  left: 50%;
+  right: 0;
+}
+.book-static-left {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+}
+.book-static-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 50%;
+}
+/* Soft shading along the spine */
+.spine-l::after,
+.spine-r::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 8%;
+  pointer-events: none;
+}
+.spine-l::after {
+  right: 0;
+  background: linear-gradient(90deg, transparent, rgba(26, 26, 26, .07));
+}
+.spine-r::after {
+  left: 0;
+  background: linear-gradient(270deg, transparent, rgba(26, 26, 26, .07));
+}
+
+/* Book pages scale their type with the page width */
+.pg {
+  container-type: inline-size;
+  position: relative;
+  height: 100%;
+  background: var(--color-paper-2);
+  padding: 6%;
+}
+.pg-xl { font-size: 22cqw; }
+.pg-h1 { font-size: 12cqw; }
+.pg-h2 { font-size: 7cqw; }
+.pg-h3 { font-size: 5.2cqw; }
+.pg-t { font-size: clamp(12px, 3.4cqw, 18px); line-height: 1.5; }
+.pg-no {
+  position: absolute;
+  bottom: 4.5cqw;
+}
+
+/* ── Spring cursor ────────────────────────────────────────────────────── */
+@media (hover: hover) and (pointer: fine) {
+  html.spring-cursor,
+  html.spring-cursor * {
+    cursor: none !important;
+  }
+}
+.spring-cursor-dot {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: var(--color-paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 500 9px/1 var(--font-sans);
+  letter-spacing: 1px;
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    width .35s var(--ease-spring),
+    height .35s var(--ease-spring),
+    margin .35s var(--ease-spring),
+    opacity .2s ease;
+}
+.spring-cursor-dot.hover {
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+}
+.spring-cursor-dot.big {
+  width: 54px;
+  height: 54px;
+  margin: -27px 0 0 -27px;
+}
+.spring-cursor-dot span {
+  opacity: 0;
+  transition: opacity .2s;
+}
+.spring-cursor-dot.big span {
+  opacity: 1;
+}
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+}
+
+/* ── Reduced motion: simple fades only ────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .rv {
+    transform: none;
+    transition: opacity .3s ease !important;
+  }
+}
