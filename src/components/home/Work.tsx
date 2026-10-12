@@ -125,7 +125,7 @@ export default function Work() {
           <p className="text-[15px] leading-relaxed text-ink/80 md:text-[17px]">
             Launch sequences, customer journeys, unofficial redesigns and self-initiated concepts.
           </p>
-          <p className="label mt-4 text-accent">Choose a project to open it →</p>
+          <p className="label mt-4 text-accent">Choose a project to open it</p>
         </Rv>
       </div>
     </Reveal>

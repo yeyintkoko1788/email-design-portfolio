@@ -7,11 +7,20 @@ import type { CreativePiece, EmailMock, FeedMock } from '../data/creative'
 
 /** A looping, muted video with its still frame until it plays. */
 function Clip({ piece, className = '' }: { piece: CreativePiece; className?: string }) {
+  // Scale and shift the video so only the cropped part fills the box
+  const c = piece.crop
+  const style = c && {
+    width: `${(c[0] / (c[4] - c[2])) * 100}%`,
+    height: `${(c[1] / (c[5] - c[3])) * 100}%`,
+    left: `${(-c[2] / (c[4] - c[2])) * 100}%`,
+    top: `${(-c[3] / (c[5] - c[3])) * 100}%`,
+  }
   return (
     <video
       src={piece.src}
       poster={piece.poster}
-      className={`block size-full object-cover ${className}`}
+      style={style || undefined}
+      className={c ? `absolute max-w-none object-fill ${className}` : `block size-full object-cover ${className}`}
       autoPlay
       muted
       loop
@@ -131,7 +140,7 @@ function EmailScene({ piece, mock }: { piece: CreativePiece; mock: EmailMock }) 
   return (
     <Stage w={560} h={580}>
       {/* The email, open in a mail app */}
-      <div className="absolute top-[6%] left-0 w-[86%] overflow-hidden rounded-xl bg-[#FBF6EC] text-[#24346B] shadow-[0_24px_60px_rgba(0,0,0,.45)]">
+      <div className="absolute top-[6%] left-0 w-[86%] overflow-hidden rounded-[26px] bg-[#FBF6EC] text-[#24346B] shadow-[0_24px_60px_rgba(0,0,0,.45)]">
         <div className="flex items-center gap-1.5 border-b border-[#24346B]/10 px-4 py-2.5 text-[11px]">
           <span className="size-2.5 rounded-full bg-[#FF5F57]" aria-hidden />
           <span className="size-2.5 rounded-full bg-[#FEBC2E]" aria-hidden />
@@ -140,7 +149,7 @@ function EmailScene({ piece, mock }: { piece: CreativePiece; mock: EmailMock }) 
           <span className="ml-auto underline underline-offset-2">View in browser</span>
         </div>
         <div className="p-3">
-          <div className="overflow-hidden rounded-lg" style={{ aspectRatio: piece.ratio }}>
+          <div className="relative overflow-hidden rounded-[14px]" style={{ aspectRatio: piece.ratio }}>
             <Clip piece={piece} />
           </div>
         </div>
@@ -155,7 +164,7 @@ function EmailScene({ piece, mock }: { piece: CreativePiece; mock: EmailMock }) 
 
       {/* The same banner on a phone, turned sideways */}
       <div className="absolute right-0 bottom-[6%] w-[58%] -rotate-[9deg] rounded-[1.8rem] border-[6px] border-[#151515] bg-[#151515] shadow-[0_24px_50px_rgba(0,0,0,.5)]">
-        <div className="overflow-hidden rounded-[1.4rem] bg-[#1F2F6B]" style={{ aspectRatio: piece.ratio }}>
+        <div className="relative overflow-hidden rounded-[1.4rem] bg-[#1F2F6B]" style={{ aspectRatio: piece.ratio }}>
           <Clip piece={piece} />
         </div>
       </div>

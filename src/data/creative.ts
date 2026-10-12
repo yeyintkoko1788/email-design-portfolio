@@ -10,6 +10,8 @@ export type CreativePiece = {
   poster?: string
   /** Shape of the piece when it isn't 4:5, e.g. '3 / 1' for an email banner */
   ratio?: string
+  /** Source size and the visible part inside it, to trim a recording's black edge: [w, h, left, top, right, bottom] in px */
+  crop?: [number, number, number, number, number, number]
   /** How an ad is staged: in a social feed post, or inside an email */
   mock?: FeedMock | EmailMock
   /** Opens a detail page */
@@ -88,7 +90,7 @@ export const creative: CreativeCategory[] = [
     layout: 'wall',
     pieces: [
       { title: 'Vivaia · Women’s Day', src: '/videos/vivaia-ad.mp4', poster: '/videos/vivaia-ad.jpg', note: 'The feed ad that leads into the campaign email: up to $50 off.', color: '#F2DDE2', video: true, medium: 'Motion ad · Instagram feed 4:5 · 2026', mock: { kind: 'feed', handle: 'vivaia.official', caption: 'Celebrate Women’s Day with up to $50 off. More comfort, more confidence.', likes: '1,248', cta: 'Shop Now', deco: '#F2A7B8', link: { label: 'See the Vivaia journey', to: '/work/vivaia' } } },
-      { title: 'Juiceday · Countdown', src: '/videos/juiceday-countdown.mp4', poster: '/videos/juiceday-countdown.jpg', note: 'The last-chance timer. In a real send, a live Klaviyo countdown in this design.', color: '#1F2F6B', video: true, ratio: '746 / 266', medium: 'Email GIF · 600 × 200 · 2026', mock: { kind: 'email', sender: 'Juiceday', headline: 'juiceday', line: 'Your free mini says goodbye at midnight.', deco: '#8EA2E8', note: 'countdown animation in email', link: { label: 'See the Juiceday launch', to: '/work/juiceday' } } },
+      { title: 'Juiceday · Countdown', src: '/videos/juiceday-countdown.mp4', poster: '/videos/juiceday-countdown.jpg', note: 'The last-chance timer. In a real send, a live Klaviyo countdown in this design.', color: '#1F2F6B', video: true, ratio: '724 / 241', crop: [746, 266, 9, 13, 733, 254], medium: 'Email GIF · 600 × 200 · 2026', mock: { kind: 'email', sender: 'Juiceday', headline: 'juiceday', line: 'Your free mini says goodbye at midnight.', deco: '#8EA2E8', note: 'countdown animation in email', link: { label: 'See the Juiceday launch', to: '/work/juiceday' } } },
       { title: 'Matcha · Stamp card', src: '/videos/matcha-ad.mp4', poster: '/videos/matcha-ad.jpg', note: 'The café’s feed ad for the stamp card, in the same greens as the loyalty email.', color: '#9AA68E', video: true, medium: 'Product motion ad · Instagram feed 4:5 · 2026', mock: { kind: 'feed', handle: 'nangmatcha', caption: 'Whisk, sip, enjoy. Buy 5, and the 6th one is on us.', likes: '862', cta: 'Order Ahead', ctaBg: '#DDE3C8', deco: '#9DB57A', link: { label: 'See the Matcha email', to: '/work/concepts#matcha' } } },
     ],
   },
