@@ -24,7 +24,7 @@ const concepts: Concept[] = [
     title: 'Matcha loyalty',
     kind: 'Loyalty email · Café',
     poster: `${IMG}/matcha-poster.jpg`,
-    posterNote: 'The in-café poster: the same “Buy 5, free 1” stamp, on the cup',
+    posterNote: 'The in-café poster',
     brief: [
       ['The idea', 'A stamp-card email for a matcha café: you’re 2 stamps away from a free drink, and this weekend every drink counts double.'],
       ['The challenge', 'Make a points update feel like a treat, not a receipt.'],
@@ -52,7 +52,7 @@ const concepts: Concept[] = [
     title: 'Museum exhibition',
     kind: 'Event email · Exhibition',
     poster: `${IMG}/museum-poster-v2.jpg`,
-    posterNote: 'The exhibition poster: same title, dates and wavy edge',
+    posterNote: 'The exhibition poster',
     brief: [
       ['The idea', 'A launch email for a small museum’s new exhibition, “The Weight of Light”: four artists, opening 12 October.'],
       ['The challenge', 'Make a museum email feel like walking into the gallery, not reading a listing.'],

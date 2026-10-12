@@ -62,7 +62,8 @@ function Section({ s, n }: { s: CaseSection; n: number }) {
             </Rv>
           )}
           {s.images && (
-            <Rv i={4} className="md:col-span-12">
+            // A single image sits smaller, centred; a pair uses the full width
+            <Rv i={4} className={s.images.length === 1 ? 'mx-auto w-full max-w-xl md:col-span-12' : 'md:col-span-12'}>
               <Pair images={s.images} />
             </Rv>
           )}

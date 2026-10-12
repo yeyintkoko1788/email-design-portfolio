@@ -2,7 +2,14 @@ import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
 import SectionHead from '../SectionHead'
 import { Reveal, Rv } from '../Reveal'
-import { creative } from '../../data/creative'
+import { creative, type CreativePiece } from '../../data/creative'
+
+/** The thumb on top, with two other pieces fanned behind it (never the thumb's own piece twice). */
+function thumbStack(pieces: CreativePiece[], thumb: string) {
+  const rest = pieces.filter((p) => p.poster !== thumb && p.src !== thumb)
+  const front = pieces.find((p) => p.poster === thumb || p.src === thumb) ?? rest[0]
+  return [rest[0], { ...front, src: thumb, video: false }, rest[1]].filter(Boolean)
+}
 
 /** 05 · My creative space: one card per category; each opens its own page. */
 export default function CreativeSpace() {
@@ -14,7 +21,7 @@ export default function CreativeSpace() {
           Outside the <em className="text-accent">inbox.</em>
         </Rv>
         <Rv i={1} as="p" className="text-[15px] leading-relaxed text-ink/80 md:col-span-4 md:col-start-9 md:text-[17px]">
-          Interfaces, posters and things that move.
+          Interfaces, ads in motion and a book cover.
         </Rv>
       </Reveal>
 
@@ -25,10 +32,7 @@ export default function CreativeSpace() {
               <div className="relative flex aspect-[5/4] items-center justify-center overflow-hidden bg-paper-back">
                 {/* A small stack of the category's pieces, portrait, in the middle */}
                 <div className="relative aspect-[4/5] h-[70%] transition-transform duration-500 ease-[var(--ease-spring)] group-hover:scale-[1.04]">
-                  {(c.thumb
-                    ? [c.pieces[0], { ...c.pieces[1], src: c.thumb, video: false }, c.pieces[2]].filter(Boolean)
-                    : c.pieces.slice(0, 3)
-                  ).map((p, k) => (
+                  {(c.thumb ? thumbStack(c.pieces, c.thumb) : c.pieces.slice(0, 3)).map((p, k) => (
                     <div
                       key={k}
                       className="absolute inset-0 shadow-[0_0_0_1px_rgba(26,26,26,.06),0_6px_18px_rgba(26,26,26,.14)] transition-transform duration-500 ease-[var(--ease-spring)]"
@@ -38,7 +42,7 @@ export default function CreativeSpace() {
                         zIndex: 3 - Math.abs(k - 1),
                       }}
                     >
-                      {p.src && !p.video && <img src={p.src} alt="" className="size-full object-cover" loading="lazy" />}
+                      {(p.video ? p.poster : p.src) && <img src={p.video ? p.poster : p.src} alt="" className="size-full object-cover" loading="lazy" />}
                     </div>
                   ))}
                 </div>

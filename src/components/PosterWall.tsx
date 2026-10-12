@@ -3,6 +3,7 @@ import { X } from 'lucide-react'
 import { Reveal, Rv } from './Reveal'
 import { Tape } from './Collage'
 import type { CreativePiece } from '../data/creative'
+import AdShowcase from './AdShowcase'
 
 /** Paper edge + soft shadow, the same as the Work cards. */
 const EDGE =
@@ -92,7 +93,14 @@ export default function PosterWall({ pieces }: { pieces: CreativePiece[] }) {
 
   return (
     <>
-      <Reveal amount={0.08} className="page-px grid grid-cols-2 gap-x-4 gap-y-14 pb-24 md:grid-cols-12 md:gap-x-8 md:pb-36">
+      {motion.length > 0 && <AdShowcase pieces={motion} />}
+
+      {stills.length > 0 && (
+      <Reveal amount={0.08} className="page-px grid grid-cols-2 gap-x-4 gap-y-14 py-20 md:grid-cols-12 md:gap-x-8 md:py-28">
+        <Rv i={0} className="label col-span-2 flex justify-between border-b border-ink/15 pb-2 md:col-span-12">
+          <span>Posters</span>
+          <span>{String(stills.length).padStart(2, '0')} pieces</span>
+        </Rv>
         {stills.map((p, i) => (
           <Rv key={p.title} i={i} as="figure" className={HANG[i % HANG.length]}>
             <button
@@ -107,34 +115,12 @@ export default function PosterWall({ pieces }: { pieces: CreativePiece[] }) {
                 {p.src && <img src={p.src} alt={p.title} loading="lazy" className="size-full object-cover" />}
               </span>
             </button>
-            <Label n={i + 1} piece={p} />
+            <Label n={motion.length + i + 1} piece={p} />
           </Rv>
         ))}
       </Reveal>
-
-      {motion.length > 0 && (
-        <Reveal amount={0.1} as="section" className="page-px bg-night py-20 text-paper-2 md:py-28">
-          <Rv i={0} className="label flex justify-between border-b border-paper-2/20 pb-2">
-            <span>In motion</span>
-            <span>{String(motion.length).padStart(2, '0')} pieces</span>
-          </Rv>
-          <div className="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 md:mt-14 md:grid-cols-12">
-            {motion.map((p, i) => (
-              <Rv
-                key={p.title}
-                i={1 + i}
-                as="figure"
-                className={i === 0 ? 'md:col-span-4 md:col-start-2' : 'md:col-span-4 md:col-start-8 md:mt-24'}
-              >
-                <div className="aspect-[4/5] overflow-hidden shadow-[0_0_0_1px_rgba(244,238,227,.12),0_18px_40px_rgba(0,0,0,.3)]" style={{ background: p.color }}>
-                  {p.src && <video src={p.src} poster={p.poster} className="size-full object-cover" autoPlay muted loop playsInline aria-label={p.title} />}
-                </div>
-                <Label n={stills.length + i + 1} piece={p} dark />
-              </Rv>
-            ))}
-          </div>
-        </Reveal>
       )}
+
 
       {open && <Lightbox piece={open} onClose={() => setOpen(null)} />}
     </>

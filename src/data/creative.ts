@@ -8,6 +8,10 @@ export type CreativePiece = {
   video?: boolean
   /** Still frame shown before a video plays */
   poster?: string
+  /** Shape of the piece when it isn't 4:5, e.g. '3 / 1' for an email banner */
+  ratio?: string
+  /** How an ad is staged: in a social feed post, or inside an email */
+  mock?: FeedMock | EmailMock
   /** Opens a detail page */
   href?: string
   /** Gallery label: medium and a few colours from the piece */
@@ -15,6 +19,31 @@ export type CreativePiece = {
   year?: string
   palette?: string[]
   color: string
+}
+
+export type FeedMock = {
+  kind: 'feed'
+  handle: string
+  caption: string
+  likes: string
+  cta: string
+  /** Background of the CTA bar under the post */
+  ctaBg?: string
+  /** Colour of the small clover decoration */
+  deco: string
+  /** Related email story */
+  link?: { label: string; to: string }
+}
+
+export type EmailMock = {
+  kind: 'email'
+  sender: string
+  headline: string
+  line: string
+  deco: string
+  /** Little handwritten note beside it */
+  note?: string
+  link?: { label: string; to: string }
 }
 
 export type CreativeCategory = {
@@ -51,15 +80,16 @@ export const creative: CreativeCategory[] = [
   },
   {
     slug: 'posters',
-    title: 'Ads & posters',
-    line: 'Ads that move, and the posters I couldn’t leave out.',
+    title: 'Ads in motion',
+    line: 'Ads and email GIFs that move.',
     aspect: 'aspect-[4/5]',
     color: '#F2C9D3',
-    thumb: '/images/creative/posters/make-a-mess.jpg',
+    thumb: '/videos/matcha-ad.jpg',
     layout: 'wall',
     pieces: [
-      { title: 'Obstacle', src: '/images/creative/posters/obstacle.jpg', note: 'The biggest obstacle might be the doubt within you.', color: '#ECE8E0', medium: 'Digital poster', palette: ['#324978', '#51504D', '#B2B2AD'] },
-      { title: 'Just tomatoes', src: '/images/creative/posters/tomatoes.jpg', note: 'No thoughts. Just tomatoes.', color: '#F8ECEE', medium: 'Digital poster', palette: ['#ED6558', '#D8D6E7', '#F9EEEF'] },
+      { title: 'Vivaia · Women’s Day', src: '/videos/vivaia-ad.mp4', poster: '/videos/vivaia-ad.jpg', note: 'The feed ad that leads into the campaign email: up to $50 off.', color: '#F2DDE2', video: true, medium: 'Motion ad · Instagram feed 4:5 · 2026', mock: { kind: 'feed', handle: 'vivaia.official', caption: 'Celebrate Women’s Day with up to $50 off. More comfort, more confidence.', likes: '1,248', cta: 'Shop Now', deco: '#F2A7B8', link: { label: 'See the Vivaia journey', to: '/work/vivaia' } } },
+      { title: 'Juiceday · Countdown', src: '/videos/juiceday-countdown.mp4', poster: '/videos/juiceday-countdown.jpg', note: 'The last-chance timer. In a real send, a live Klaviyo countdown in this design.', color: '#1F2F6B', video: true, ratio: '746 / 266', medium: 'Email GIF · 600 × 200 · 2026', mock: { kind: 'email', sender: 'Juiceday', headline: 'juiceday', line: 'Your free mini says goodbye at midnight.', deco: '#8EA2E8', note: 'countdown animation in email', link: { label: 'See the Juiceday launch', to: '/work/juiceday' } } },
+      { title: 'Matcha · Stamp card', src: '/videos/matcha-ad.mp4', poster: '/videos/matcha-ad.jpg', note: 'The café’s feed ad for the stamp card, in the same greens as the loyalty email.', color: '#9AA68E', video: true, medium: 'Product motion ad · Instagram feed 4:5 · 2026', mock: { kind: 'feed', handle: 'nangmatcha', caption: 'Whisk, sip, enjoy. Buy 5, and the 6th one is on us.', likes: '862', cta: 'Order Ahead', ctaBg: '#DDE3C8', deco: '#9DB57A', link: { label: 'See the Matcha email', to: '/work/concepts#matcha' } } },
     ],
   },
   {
@@ -96,13 +126,12 @@ export const creative: CreativeCategory[] = [
           kind: 'text',
           title: 'The brief',
           body: [
-            'The client gave me his own oil painting and an AI-made cover as a reference. Dark, painterly, literary-surreal. Not pulp horror, not gothic. The painting stays the centrepiece.',
+            'The client gave me his own oil painting and a rough idea of the mood he wanted: dark, painterly, literary-surreal. Not pulp horror, not gothic. The painting stays the centrepiece.',
             'The catch: it was never painted to be a cover. Dense detail everywhere, and no quiet space for type.',
           ],
           question: 'How do you turn a painting into a cover without changing its character?',
           images: [
             { src: '/images/creative/book-cover/painting.jpg', w: 1468, h: 1114, alt: 'The original oil painting', caption: 'The painting' },
-            { src: '/images/creative/book-cover/ai-reference.jpg', w: 1536, h: 1024, alt: 'The AI-made cover reference', caption: 'The reference' },
           ],
         },
         {
@@ -135,7 +164,7 @@ export const creative: CreativeCategory[] = [
           items: [
             {
               name: 'Two finals',
-              text: 'The client’s pick stays closest to the reference, with a blurred back for the blurb. Mine removes the blurry aircraft, so one scene runs across the spine. He printed both to decide on paper.',
+              text: 'The client’s pick stays closest to his original idea, with a blurred back for the blurb. Mine removes the blurry aircraft, so one scene runs across the spine. He printed both to decide on paper.',
               images: [
                 { src: '/images/creative/book-cover/final-client.jpg', w: 2200, h: 1718, alt: 'Final cover, client’s pick', caption: 'Client’s pick' },
                 { src: '/images/creative/book-cover/final-recommended.jpg', w: 2200, h: 1718, alt: 'Final cover, my recommendation', caption: 'My recommendation' },
