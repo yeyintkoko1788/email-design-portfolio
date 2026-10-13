@@ -1,4 +1,3 @@
-import { ArrowRight } from 'lucide-react'
 import SectionHead from '../SectionHead'
 import { Rv } from '../Reveal'
 import Logo, { InlineLogo } from '../Logo'
@@ -6,14 +5,12 @@ import { Checker, Hand, Zigzag } from '../Collage'
 import { popStyle } from '../../lib/pop'
 import { site } from '../../data/site'
 import { beforeDesign, notes, path, story } from '../../data/about'
-import { useStory } from '../../lib/storyContext'
 
 /**
  * Page 2 · About. Desktop: intro | path | quote, with the notes as a strip below.
  * Phones: everything stacked. Decoration is kept to one small handwritten note.
  */
 export default function AboutPage() {
-  const { next } = useStory()
   return (
     <div className="page-px relative flex h-full flex-col bg-paper pt-5 pb-16 short:pt-4 short:pb-[52px] md:pt-8 md:pb-20">
       <Rv i={0}>
@@ -109,18 +106,6 @@ export default function AboutPage() {
         </Rv>
       </div>
 
-      <button
-        type="button"
-        onClick={next}
-        data-cursor="NEXT"
-        className="label absolute right-4 bottom-6 hidden items-center gap-2 md:right-12 md:flex"
-        aria-label="Next page"
-      >
-        <span className="flex size-11 items-center justify-center rounded-full bg-accent text-[9px] text-paper transition-transform duration-300 ease-[var(--ease-spring)] hover:scale-110">
-          Next
-        </span>
-        <ArrowRight size={14} aria-hidden />
-      </button>
     </div>
   )
 }

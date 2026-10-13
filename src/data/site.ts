@@ -13,6 +13,6 @@ export const site = {
   formspreeId: 'mkoyllby',
   /** Link to the full Vivaia cart email code. Hidden until set. */
   codeUrl: '',
-  /** Résumé PDF. Put the file at public/resume.pdf */
-  resumeUrl: '/resume.pdf',
+  /** Résumé, shared from Google Drive */
+  resumeUrl: 'https://drive.google.com/file/d/1tRfst7Lxt5cHsjMaUjdf02dmF0M80fb-/view?usp=sharing',
 }

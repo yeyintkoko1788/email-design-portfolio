@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import FlipStack from '../FlipStack'
 import SoundToggle from '../SoundToggle'
 import { clamp, useReducedMotion } from '../../lib/hooks'
@@ -185,6 +186,10 @@ export default function StoryIssue({
     window.scrollTo({ top: top + i * window.innerHeight * STEP + 1, behavior: reduced ? 'auto' : 'smooth' })
   }
 
+  // Past the last book page, the site carries on as a normal scroll
+  const toWork = () => document.getElementById('work')?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' })
+  const last = index >= n - 1
+
   return (
     <section
       ref={ref}
@@ -210,14 +215,37 @@ export default function StoryIssue({
             pages={pages}
             index={index}
             onNext={() => goTo(index + 1)}
+            onPrev={() => goTo(index - 1)}
+            onEnd={toWork}
             className="h-full [perspective:260vw]"
           />
         </StoryContext.Provider>
-        <div className="label pointer-events-none absolute bottom-4 left-1/2 z-[300] flex -translate-x-1/2 items-center gap-3">
-          <span>
-            <span className="text-accent">{String(index + 1).padStart(2, '0')}</span> / {String(total).padStart(2, '0')}
+        <div className="label pointer-events-none absolute bottom-4 left-1/2 z-[300] flex -translate-x-1/2 items-center gap-3 whitespace-nowrap">
+          {/* Previous / next beside the page number, for anyone who doesn't scroll */}
+          <span className="pointer-events-auto flex items-center gap-1">
+            <button
+              type="button"
+              onClick={() => goTo(index - 1)}
+              disabled={index === 0}
+              aria-label="Previous page"
+              className="flex size-7 items-center justify-center rounded-full transition-colors hover:bg-ink/10 hover:text-accent disabled:invisible"
+            >
+              <ChevronLeft size={14} aria-hidden />
+            </button>
+            <span>
+              <span className="text-accent">{String(index + 1).padStart(2, '0')}</span> / {String(total).padStart(2, '0')}
+            </span>
+            <button
+              type="button"
+              onClick={() => (last ? toWork() : goTo(index + 1))}
+              aria-label="Next page"
+              className="flex size-7 items-center justify-center rounded-full transition-colors hover:bg-ink/10 hover:text-accent disabled:invisible"
+            >
+              <ChevronRight size={14} aria-hidden />
+            </button>
           </span>
           <SoundToggle className="pointer-events-auto" />
+          {last && <span className="absolute bottom-full left-1/2 mb-1 -translate-x-1/2 whitespace-nowrap text-ink/60 sm:static sm:mb-0 sm:translate-x-0">Scroll down to explore ↓</span>}
         </div>
       </div>
     </section>

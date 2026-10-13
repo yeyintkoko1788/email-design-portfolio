@@ -97,15 +97,15 @@ export const creative: CreativeCategory[] = [
   {
     slug: 'book-cover',
     title: 'Book cover',
-    tag: 'Client project',
-    line: 'A real client project, from brief to final design.',
+    tag: 'Client commission',
+    line: 'A real commission, from brief to final design.',
     aspect: 'aspect-[2/3]',
     color: '#D9D2C5',
     pieces: [{ title: 'The Wounded Spiral', src: '/images/creative/book-cover/cover.jpg', note: 'Surrealist fiction · A5 paperback', color: '#D9D2C5' }],
     study: {
       slug: 'the-wounded-spiral',
       title: 'The Wounded Spiral',
-      kicker: 'Client project',
+      kicker: 'Client commission',
       line: '',
       cover: '/images/creative/book-cover/cover.jpg',
       coverAlt: 'The Wounded Spiral cover design, mocked up on a table',

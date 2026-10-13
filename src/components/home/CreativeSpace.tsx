@@ -14,7 +14,7 @@ function thumbStack(pieces: CreativePiece[], thumb: string) {
 /** 05 · My creative space: one card per category; each opens its own page. */
 export default function CreativeSpace() {
   return (
-    <section id="creative" className="page-px bg-paper py-20 md:py-28">
+    <section id="creative" className="page-px bg-paper pt-20 pb-4 md:pt-28">
       <SectionHead title="My creative space" n={5} />
       <Reveal className="mt-10 grid gap-4 md:mt-16 md:grid-cols-12 md:items-end md:gap-x-8">
         <Rv i={0} as="h2" className="headline text-[10vw] md:col-span-7 md:text-[min(4.4vw,68px)]">
