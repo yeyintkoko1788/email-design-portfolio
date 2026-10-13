@@ -97,31 +97,32 @@ export const creative: CreativeCategory[] = [
   {
     slug: 'book-cover',
     title: 'Book cover',
-    tag: 'Client commission',
-    line: 'A real commission, from brief to print.',
+    tag: 'Client project',
+    line: 'A real client project, from brief to final design.',
     aspect: 'aspect-[2/3]',
     color: '#D9D2C5',
-    pieces: [{ title: 'The Wounded Spiral', src: '/images/creative/book-cover/cover.jpg', note: 'Lee John Nottingham · A5 paperback', color: '#D9D2C5' }],
+    pieces: [{ title: 'The Wounded Spiral', src: '/images/creative/book-cover/cover.jpg', note: 'Surrealist fiction · A5 paperback', color: '#D9D2C5' }],
     study: {
       slug: 'the-wounded-spiral',
       title: 'The Wounded Spiral',
-      kicker: 'Client commission',
+      kicker: 'Client project',
       line: '',
       cover: '/images/creative/book-cover/cover.jpg',
-      coverAlt: 'Three printed copies of The Wounded Spiral on a table',
+      coverAlt: 'The Wounded Spiral cover design, mocked up on a table',
       meta: [
         ['Book', 'The Wounded Spiral'],
-        ['Client', 'Lee John Nottingham'],
+        ['Client', 'Independent author'],
         ['Genre', 'Surrealist fiction'],
         ['Format', 'A5 paperback, full wrap'],
         ['Role', 'Graphic designer'],
         ['Timeline', '2 weeks'],
         ['Tools', 'Figma'],
+        ['Delivered', 'Two print-ready cover designs'],
       ],
       stats: [
         ['1st', 'client project, on time and in scope'],
         ['300', 'DPI print file, rebuilt from a 27–42 DPI scan'],
-        ['2', 'finals, both printed to decide on paper'],
+        ['2', 'finals delivered, print-ready'],
       ],
       sections: [
         {
@@ -166,10 +167,10 @@ export const creative: CreativeCategory[] = [
           items: [
             {
               name: 'Two finals',
-              text: 'The client’s pick stays closest to his original idea, with a blurred back for the blurb. Mine removes the blurry aircraft, so one scene runs across the spine. He printed both to decide on paper.',
+              text: 'Final A stays closest to the author’s original idea, with a blurred back for the blurb. Final B removes the blurry aircraft, so one scene runs across the spine. Both went to the author as print-ready files.',
               images: [
-                { src: '/images/creative/book-cover/final-client.jpg', w: 2200, h: 1718, alt: 'Final cover, client’s pick', caption: 'Client’s pick' },
-                { src: '/images/creative/book-cover/final-recommended.jpg', w: 2200, h: 1718, alt: 'Final cover, my recommendation', caption: 'My recommendation' },
+                { src: '/images/creative/book-cover/final-client.jpg', w: 2200, h: 1718, alt: 'Final cover A', caption: 'Final A · closest to the brief' },
+                { src: '/images/creative/book-cover/final-recommended.jpg', w: 2200, h: 1718, alt: 'Final cover B', caption: 'Final B · my recommendation' },
               ],
             },
           ],
@@ -179,7 +180,7 @@ export const creative: CreativeCategory[] = [
           title: 'Looking back',
           points: [
             'A canvas isn’t a cover. Every fix had to work without visibly touching the painting.',
-            'With an undecided client, quick and clear reasons mattered as much as the design.',
+            'With two strong options on the table, quick and clear reasons mattered as much as the design.',
             'Rebuilding a low-resolution scan into a print-ready file was new to me, and now I know how.',
           ],
         },
