@@ -13,7 +13,7 @@ export const beforeDesign =
 
 export const notes = [
   { label: 'Tools', text: 'Figma · Canva · HTML email · Klaviyo' },
-  { label: 'Current fixation', text: 'Typography · art direction · little details' },
+  { label: 'Fixation', text: 'Typography · art direction · little details' },
   { label: 'Off the clock', text: 'Painting & posters' },
   { label: 'Best skill', text: 'I can make it happen' },
 ]

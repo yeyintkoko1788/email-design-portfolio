@@ -75,7 +75,7 @@ export default function StoryIssue({
     return () => clearTimeout(t)
   }, [index, target, flip])
 
-  // One gesture = one page. Inside the pinned pages, wheel/trackpad, swipe
+  // One gesture = one page. Inside the pinned pages, wheel/trackpad
   // and keyboard turn exactly one page and jump straight to that page's
   // scroll position, so momentum can't carry you past a page. Before the
   // first page and after the last one, the page scrolls normally.
@@ -136,23 +136,8 @@ export default function StoryIssue({
       // armed but can't turn: before the first page or after the last one, scroll normally
     }
 
-    // Touch: a swipe turns one page.
-    let startY: number | null = null
-    const onTouchStart = (e: TouchEvent) => {
-      startY = e.touches[0].clientY
-    }
-    const onTouchMove = (e: TouchEvent) => {
-      if (startY === null) return
-      const dir = startY - e.touches[0].clientY > 0 ? 1 : -1
-      if (canTurn(dir)) e.preventDefault()
-    }
-    const onTouchEnd = (e: TouchEvent) => {
-      if (startY === null) return
-      const dy = startY - e.changedTouches[0].clientY
-      startY = null
-      const dir = dy > 0 ? 1 : -1
-      if (Math.abs(dy) > 40 && canTurn(dir)) turn(dir)
-    }
+    // Touch is left alone: on phones the pages turn with the normal scroll
+    // (no one-swipe-one-page snapping), which keeps scrolling smooth.
 
     // Keyboard: arrows, Page Up/Down and Space turn one page.
     const onKey = (e: KeyboardEvent) => {
@@ -166,15 +151,9 @@ export default function StoryIssue({
     }
 
     window.addEventListener('wheel', onWheel, { passive: false })
-    window.addEventListener('touchstart', onTouchStart, { passive: true })
-    window.addEventListener('touchmove', onTouchMove, { passive: false })
-    window.addEventListener('touchend', onTouchEnd)
     window.addEventListener('keydown', onKey)
     return () => {
       window.removeEventListener('wheel', onWheel)
-      window.removeEventListener('touchstart', onTouchStart)
-      window.removeEventListener('touchmove', onTouchMove)
-      window.removeEventListener('touchend', onTouchEnd)
       window.removeEventListener('keydown', onKey)
     }
   }, [n])
