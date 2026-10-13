@@ -57,7 +57,6 @@ export default function AboutPage() {
             {path.map((step, i) => (
               <Rv key={step.role} as="li" i={4 + i} className="flex items-baseline gap-2 lg:block lg:border-b lg:border-ink/15 lg:py-5 lg:first:pt-0">
                 <span className="label text-accent">
-                  <span className="hidden lg:inline">— </span>
                   {step.years}
                 </span>
                 <p className="font-serif text-[18px] leading-tight lg:mt-2 lg:text-[min(2.2vw,4.2svh)]">
@@ -80,7 +79,7 @@ export default function AboutPage() {
             “{site.quote}”
           </blockquote>
           <figcaption className="label mt-2 lg:mt-5">
-            — <InlineLogo size={1.8} /> · Vol. 2
+            <InlineLogo size={1.8} /> · Vol. 2
           </figcaption>
         </Rv>
 

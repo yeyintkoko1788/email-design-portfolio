@@ -1,6 +1,6 @@
 export const story = [
   'I spent three years teaching science, where I learned how to make complicated ideas feel simple.',
-  'Now I do the same thing visually — through email, typography, layout, and art direction.',
+  'Now I do the same thing visually, through email, typography, layout, and art direction.',
 ]
 
 export const path = [
