@@ -49,7 +49,7 @@ export default function ProcessPage() {
       <div className="grid min-h-0 flex-1 content-center-safe gap-5 short:gap-3 lg:grid-cols-[0.8fr_3.4fr] lg:items-center lg:gap-x-[5vw]">
         {/* Intro */}
         <div className="relative lg:self-stretch lg:py-[6svh]">
-          <Rv i={1} as="h2" className="headline text-[9vw] leading-[1.02] short:text-[7.5vw] md:text-[52px] lg:text-[min(3.6vw,7svh)]">
+          <Rv i={1} as="h2" className="headline text-[9vw] leading-[1.02] short:text-[7.5vw] md:text-[min(52px,6.5svh)] lg:text-[min(3.6vw,7svh)]">
             From brief <br className="hidden lg:block" />
             to{' '}
             <span className="relative inline-block">
@@ -93,18 +93,18 @@ export default function ProcessPage() {
                 key={p.step}
                 as="li"
                 i={3 + i}
-                className="border-ink/15 py-3.5 short:py-2.5 max-lg:not-nth-[-n+2]:border-t lg:grid lg:grid-cols-[1fr_34%] lg:items-start lg:gap-5 lg:py-0"
+                className="border-ink/15 py-3.5 short:py-2.5 md:py-[min(14px,1.8svh)] max-lg:not-nth-[-n+2]:border-t lg:grid lg:grid-cols-[1fr_34%] lg:items-start lg:gap-5 lg:py-0"
               >
                 <div>
                   <p className="label text-accent">{String(i + 1).padStart(2, '0')}</p>
-                  <h3 className="headline mt-1 text-[23px] leading-none short:text-[20px] md:text-[32px] lg:mt-2 lg:text-[min(2.5vw,4.6svh)]">
+                  <h3 className="headline mt-1 text-[23px] leading-none short:text-[20px] md:text-[min(32px,4.2svh)] lg:mt-2 lg:text-[min(2.5vw,4.6svh)]">
                     {p.step}
                     <span className="ml-1.5 font-sans text-[0.55em] text-accent">→</span>
                   </h3>
-                  <p className="mt-2 font-serif text-[14px] leading-snug italic short:text-[13px] md:text-[17px] lg:mt-3 lg:text-[min(1.2vw,2.2svh)]">
+                  <p className="mt-2 font-serif text-[14px] leading-snug italic short:text-[13px] md:text-[min(17px,2.5svh)] lg:mt-3 lg:text-[min(1.2vw,2.2svh)]">
                     {p.question}
                   </p>
-                  <p className="mt-1.5 text-[12.5px] leading-snug text-ink/70 short:hidden md:text-[14px] lg:mt-3 lg:text-[min(1vw,1.9svh)]">
+                  <p className="mt-1.5 text-[12.5px] leading-snug text-ink/70 short:hidden md:text-[min(14px,2.1svh)] lg:mt-3 lg:text-[min(1vw,1.9svh)]">
                     {p.detail}
                   </p>
                 </div>

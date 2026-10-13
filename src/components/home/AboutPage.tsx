@@ -89,13 +89,16 @@ export default function AboutPage() {
           <p className="label text-accent lg:pr-4">Notes</p>
           <dl className="mt-2 grid grid-cols-[6.5rem_1fr] items-baseline gap-x-3 gap-y-1 text-[13px] leading-snug short:mt-1.5 short:gap-y-1 md:text-[15px] lg:contents">
             {[...notes, { label: 'Status', text: '' }].map((n) => (
-              <div key={n.label} className={`contents lg:block ${n.label === 'Status' ? 'short:hidden' : ''}`}>
+              <div key={n.label} className={`contents lg:block lg:min-w-0 ${n.label === 'Status' ? 'short:hidden' : ''}`}>
                 <dt className="label text-ink/55">{n.label}</dt>
                 <dd className="lg:mt-1.5 lg:text-[min(1.05vw,15px)] xl:whitespace-nowrap">
                   {n.label === 'Status' ? (
                     <span className="inline-flex items-center gap-2">
                       <span className="size-1.5 rounded-full bg-accent" /> Open to work
                     </span>
+                  ) : n.label === 'Best skill' ? (
+                    // A wink, in handwriting
+                    <span className="font-[family-name:var(--font-hand)] text-[1.35em] leading-none text-accent">{n.text}</span>
                   ) : (
                     n.text
                   )}

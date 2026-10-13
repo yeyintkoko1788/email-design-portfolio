@@ -12,8 +12,8 @@ export const beforeDesign =
   'Engineering trained me to think in systems. Building a slow-fashion brand taught me how to think like a founder.'
 
 export const notes = [
-  { label: 'Currently', text: 'Email campaigns & visual stories' },
   { label: 'Tools', text: 'Figma · Canva · HTML email · Klaviyo' },
   { label: 'Current fixation', text: 'Typography · art direction · little details' },
   { label: 'Off the clock', text: 'Painting & posters' },
+  { label: 'Best skill', text: 'I can make it happen' },
 ]
