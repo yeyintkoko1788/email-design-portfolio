@@ -70,17 +70,6 @@ export type CreativeCategory = {
 // TODO(owner): send the files, titles and one-liners for every piece.
 export const creative: CreativeCategory[] = [
   {
-    slug: 'ui-ux',
-    title: 'UI/UX',
-    line: 'Fabric, fashion and the screens around them.',
-    aspect: 'aspect-[4/5]',
-    color: '#E3DACB',
-    pieces: [
-      { title: 'Fabric Decode', src: '/images/creative/fabric-decode/cover.jpg', href: '/creative/ui-ux/fabric-decode', note: 'Decode a fabric’s composition and how it suits your climate. Built for mobile and desktop.', color: '#E3DACB' },
-      { title: 'VERA', src: '/images/creative/vera/cover.jpg', href: '/creative/ui-ux/vera', note: 'A vintage fashion shop that makes second-hand feel first-class.', color: '#D9D2C5' },
-    ],
-  },
-  {
     slug: 'posters',
     title: 'Ads in motion',
     line: 'Ads and email GIFs that move.',
@@ -92,6 +81,17 @@ export const creative: CreativeCategory[] = [
       { title: 'Vivaia · Women’s Day', src: '/videos/vivaia-ad.mp4', poster: '/videos/vivaia-ad.jpg', note: 'The feed ad that leads into the campaign email: up to $50 off.', color: '#F2DDE2', video: true, medium: 'Motion ad · Instagram feed 4:5 · 2026', mock: { kind: 'feed', handle: 'vivaia.official', caption: 'Celebrate Women’s Day with up to $50 off. More comfort, more confidence.', likes: '1,248', cta: 'Shop Now', deco: '#F2A7B8', link: { label: 'See the Vivaia journey', to: '/work/vivaia' } } },
       { title: 'Juiceday · Countdown', src: '/videos/juiceday-countdown.mp4', poster: '/videos/juiceday-countdown.jpg', note: 'The last-chance timer. In a real send, a live Klaviyo countdown in this design.', color: '#1F2F6B', video: true, ratio: '724 / 241', crop: [746, 266, 9, 13, 733, 254], medium: 'Email GIF · 600 × 200 · 2026', mock: { kind: 'email', sender: 'Juiceday', headline: 'juiceday', line: 'Your free mini says goodbye at midnight.', deco: '#8EA2E8', note: 'countdown animation in email', link: { label: 'See the Juiceday launch', to: '/work/juiceday' } } },
       { title: 'Matcha · Stamp card', src: '/videos/matcha-ad.mp4', poster: '/videos/matcha-ad.jpg', note: 'The café’s feed ad for the stamp card, in the same greens as the loyalty email.', color: '#9AA68E', video: true, medium: 'Product motion ad · Instagram feed 4:5 · 2026', mock: { kind: 'feed', handle: 'nangmatcha', caption: 'Whisk, sip, enjoy. Buy 5, and the 6th one is on us.', likes: '862', cta: 'Order Ahead', ctaBg: '#DDE3C8', deco: '#9DB57A', link: { label: 'See the Matcha email', to: '/work/concepts#matcha' } } },
+    ],
+  },
+  {
+    slug: 'ui-ux',
+    title: 'UI/UX',
+    line: 'Fabric, fashion and the screens around them.',
+    aspect: 'aspect-[4/5]',
+    color: '#E3DACB',
+    pieces: [
+      { title: 'Fabric Decode', src: '/images/creative/fabric-decode/cover.jpg', href: '/creative/ui-ux/fabric-decode', note: 'Decode a fabric’s composition and how it suits your climate. Built for mobile and desktop.', color: '#E3DACB' },
+      { title: 'VERA', src: '/images/creative/vera/cover.jpg', href: '/creative/ui-ux/vera', note: 'A vintage fashion shop that makes second-hand feel first-class.', color: '#D9D2C5' },
     ],
   },
   {

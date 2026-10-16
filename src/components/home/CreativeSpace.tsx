@@ -21,7 +21,7 @@ export default function CreativeSpace() {
           Outside the <em className="text-accent">inbox.</em>
         </Rv>
         <Rv i={1} as="p" className="text-[15px] leading-relaxed text-ink/80 md:col-span-4 md:col-start-9 md:text-[17px]">
-          Interfaces, ads in motion and a book cover.
+          Ads in motion, interfaces and a book cover.
         </Rv>
       </Reveal>
 
