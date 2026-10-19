@@ -61,7 +61,7 @@ export default function ProcessPage() {
             The process behind
             <br className="hidden lg:block" /> every campaign
           </Rv>
-          <div className="pop absolute bottom-[6svh] left-0 hidden -rotate-12 items-end gap-2 lg:flex" style={popStyle(1.6, -18)}>
+          <div className="pop mt-[7svh] hidden w-fit -rotate-12 items-end gap-2 lg:flex" style={popStyle(1.6, -18)}>
             <Hand className="text-[min(1.15vw,2.1svh)]">
               strategy
               <br />+ creativity
@@ -103,9 +103,6 @@ export default function ProcessPage() {
                   </h3>
                   <p className="mt-2 font-serif text-[14px] leading-snug italic short:text-[13px] md:text-[min(17px,2.5svh)] lg:mt-3 lg:text-[min(1.2vw,2.2svh)]">
                     {p.question}
-                  </p>
-                  <p className="mt-1.5 text-[12.5px] leading-snug text-ink/70 short:hidden md:text-[min(14px,2.1svh)] lg:mt-3 lg:text-[min(1vw,1.9svh)]">
-                    {p.detail}
                   </p>
                 </div>
                 <div className="pop hidden justify-center self-center lg:flex" style={popStyle(0.9 + i * 0.15, i % 2 ? 9 : -9)}>
