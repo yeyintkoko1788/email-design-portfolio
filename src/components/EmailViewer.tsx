@@ -6,7 +6,10 @@ export type ViewerEmail = {
   title: string
   mobile: string
   desktop?: string
+  /** Animation over the desktop image (and the mobile one, unless `motionMobile` is set) */
   motion?: Motion
+  /** Animation placed for the mobile image, which has its own layout */
+  motionMobile?: Motion
 }
 
 /** Full-height email in a scrollable phone (or desktop) frame. */
@@ -72,7 +75,10 @@ export default function EmailViewer({ email, onClose }: { email: ViewerEmail; on
       >
         <div className="relative">
           <img src={desktop ? email.desktop : email.mobile} alt={email.title} className="block w-full" />
-          {email.motion && <MotionOverlay motion={email.motion} />}
+          {(() => {
+            const m = desktop ? email.motion : (email.motionMobile ?? email.motion)
+            return m && <MotionOverlay motion={m} />
+          })()}
         </div>
       </div>
     </div>

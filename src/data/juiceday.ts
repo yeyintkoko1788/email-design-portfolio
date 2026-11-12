@@ -10,8 +10,10 @@ export type JuicedayEmail = {
   color: string
   mobile: string
   desktop: string
-  /** A looping animation over part of the email (the email's GIF) */
+  /** A looping animation over part of the desktop email (the email's GIF) */
   motion?: Motion
+  /** The same animation, placed on the separate mobile layout */
+  motionMobile?: Motion
 }
 
 const img = (file: string) => `/images/juiceday/${file}`
@@ -39,7 +41,7 @@ export const emails: JuicedayEmail[] = [
     action: 'Save my spot',
     choice: 'The bottle stays hidden: three clues and a date instead.',
     color: '#BFD7F2',
-    mobile: img('d-01-curiosity.jpg'),
+    mobile: img('m-01-curiosity.png'),
     desktop: img('d-01-curiosity.jpg'),
   },
   {
@@ -50,10 +52,12 @@ export const emails: JuicedayEmail[] = [
     action: 'Shop Sunny Drop',
     choice: 'The clues come back, solved, plus a free mini for launch week.',
     color: '#FFD3B0',
-    mobile: img('d-02-launch.jpg'),
+    mobile: img('m-02-launch.png'),
     desktop: img('d-02-launch.jpg'),
     // The animated hero replaces the still one: full width, y 680–1630 of the 1200 × 4568 design
     motion: { src: img('launch-motion.mp4'), x: 0, y: 14.886, w: 100, h: 20.797, fit: 'contain', bg: '#FEF8EE' },
+    // Mobile layout (760 × 3696): the hero sits at x 20–740, y 516–996
+    motionMobile: { src: img('launch-motion.mp4'), x: 2.632, y: 13.961, w: 94.737, h: 12.987, fit: 'contain', bg: '#FEF8EE' },
   },
   {
     no: '03',
@@ -63,7 +67,7 @@ export const emails: JuicedayEmail[] = [
     action: 'Shop Sunny Drop',
     choice: 'Reviews, ratings and customer photos, not brand claims.',
     color: '#F7C6D9',
-    mobile: img('d-03-social-proof.jpg'),
+    mobile: img('m-03-social-proof.png'),
     desktop: img('d-03-social-proof.jpg'),
   },
   {
@@ -74,7 +78,7 @@ export const emails: JuicedayEmail[] = [
     action: 'Get Sunny Drop now',
     choice: 'A midnight deadline, and the deal made simple: two bottles, one price.',
     color: '#FDE7A0',
-    mobile: img('d-04-last-chance.jpg'),
+    mobile: img('m-04-last-chance.png'),
     desktop: img('d-04-last-chance.jpg'),
   },
 ]

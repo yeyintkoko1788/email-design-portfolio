@@ -40,7 +40,7 @@ function emailSpread(e: JuicedayEmail, k: number, open: (e: JuicedayEmail) => vo
           {e.no} · {e.name}
         </Rv>
         <Rv i={1} className="mt-[4cqw] flex min-h-0 flex-1 flex-col items-center">
-          <PhoneFrame src={e.mobile} alt={`Juiceday ${e.name} email`} onOpen={() => open(e)} motion={e.motion} className="h-[calc(100%-2.5em)]" />
+          <PhoneFrame src={e.mobile} alt={`Juiceday ${e.name} email`} onOpen={() => open(e)} motion={e.motionMobile} className="h-[calc(100%-2.5em)]" />
           <FigCaption n={k + 2} className="mt-2">
             {e.name} email
           </FigCaption>
@@ -100,7 +100,7 @@ function buildSpreads(open: (e: JuicedayEmail) => void): Spread[] {
       right: (
         <div className="pg flex items-center justify-center">
           <Rv i={1} className="h-[88%]">
-            <PhoneFrame src={emails[1].mobile} alt="Juiceday launch email" onOpen={() => open(emails[1])} motion={emails[1].motion} className="h-full" />
+            <PhoneFrame src={emails[1].mobile} alt="Juiceday launch email" onOpen={() => open(emails[1])} motion={emails[1].motionMobile} className="h-full" />
           </Rv>
         </div>
       ),
@@ -382,7 +382,7 @@ export default function Juiceday() {
   const desktop = useIsDesktop()
   const [viewing, setViewing] = useState<ViewerEmail | null>(null)
   const open = useCallback(
-    (e: JuicedayEmail) => setViewing({ title: `Juiceday · ${e.no} ${e.name}`, mobile: e.mobile, desktop: e.desktop, motion: e.motion }),
+    (e: JuicedayEmail) => setViewing({ title: `Juiceday · ${e.no} ${e.name}`, mobile: e.mobile, desktop: e.desktop, motion: e.motion, motionMobile: e.motionMobile }),
     [],
   )
   const [spreads] = useState(() => buildSpreads(open))
