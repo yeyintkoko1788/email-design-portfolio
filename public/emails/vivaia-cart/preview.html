@@ -15,6 +15,8 @@
     table { border-collapse: collapse; mso-table-lspace: 0; mso-table-rspace: 0; }
     img { border: 0; display: block; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; }
     a { color: #000000; }
+    /* Outlook: keep line heights exactly as set */
+    table, td, p, a, h1 { mso-line-height-rule: exactly; }
 
     /* Phones: full-width card and button, a little less side space */
     @media screen and (max-width: 480px) {
@@ -50,7 +52,8 @@
         <!--[if mso]><table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;font-family:Helvetica,Arial,sans-serif;color:#000000;">
 
-          <!-- Logo -->
+          <!-- Logo: transparent PNG with a thin white edge, so it stays readable when
+               Gmail or Outlook switch the email to a dark background -->
           <tr>
             <td align="center" style="padding:19px 0 20px;border-bottom:1px solid #F6DCE3;">
               <a href="https://www.vivaia.com/" target="_blank">
@@ -75,7 +78,7 @@
                 <tr>
                   <td align="center" style="padding:32px 20px 37px;">
                     <a href="#" target="_blank">
-                      <img class="product-img" src="images/product.png" width="262" height="262" alt="Margot Mary Jane" style="width:262px;height:262px;">
+                      <img class="product-img" src="images/product.png" width="262" alt="Margot Mary Jane" style="width:262px;max-width:100%;height:auto;">
                     </a>
                     <p style="margin:30px 0 0;font-size:19px;line-height:24px;font-weight:bold;">Margot Mary Jane</p>
                     <p style="margin:12px 0 0;font-size:17px;line-height:22px;">Black &nbsp;&middot;&nbsp; Size 38 &nbsp;&middot;&nbsp; Qty. 1</p>
@@ -87,13 +90,14 @@
           </tr>
           
 
-          <!-- Button (a plain table cell, so it also works in Outlook) -->
+          <!-- Button: live text in a table cell, so it shows with images off and works in
+               Outlook. Outlook ignores padding on links, so the cell carries it there. -->
           <tr>
             <td class="px" align="center" style="padding:32px 40px 0;">
               <table role="presentation" class="full" width="364" cellpadding="0" cellspacing="0" border="0" style="width:364px;">
                 <tr>
-                  <td align="center" bgcolor="#000000" style="background:#000000;">
-                    <a href="#" target="_blank" style="display:block;padding:11px 20px;font-size:17px;line-height:22px;font-weight:bold;color:#FFFFFF;text-decoration:none;">Complete My Order</a>
+                  <td align="center" bgcolor="#000000" style="background:#000000;mso-padding-alt:11px 20px;">
+                    <a href="#" target="_blank" style="display:block;padding:11px 20px;mso-padding-alt:0;font-size:17px;line-height:22px;font-weight:bold;color:#FFFFFF;text-decoration:none;">Complete My Order</a>
                   </td>
                 </tr>
               </table>
@@ -111,7 +115,7 @@
 
           <!-- Reassurance -->
           <tr>
-            <td class="px" align="center" style="padding:26px 40px 0;font-size:13px;line-height:26px;color:#7B8087;">
+            <td class="px" align="center" style="padding:26px 40px 0;font-size:13px;line-height:26px;color:#5F646B;">
               Free shipping over $99<br>
               30-day free returns<br>
               Machine washable
@@ -124,7 +128,7 @@
               <table role="presentation" class="full" width="436" cellpadding="0" cellspacing="0" border="0" style="width:436px;background:#EBDBDC;">
                 <tr>
                   <td align="center" bgcolor="#EBDBDC" style="padding:32px 24px 34px;background:#EBDBDC;">
-                    <p style="margin:0;font-size:20px;line-height:24px;letter-spacing:14px;color:#DA95A9;">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+                    <p role="img" aria-label="Rated 5 out of 5" style="margin:0;font-size:20px;line-height:24px;letter-spacing:14px;color:#DA95A9;"><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></p>
                     <p style="margin:14px 0 0;font-size:15px;line-height:20px;font-weight:bold;">&ldquo;Perfect balance between comfort and look!&rdquo;</p>
                     <p style="margin:16px 0 0;font-size:12px;line-height:18px;color:#434A54;">Emily T. &middot; Verified buyer</p>
                     <p style="margin:2px 0 0;font-size:12px;line-height:18px;color:#434A54;">Rated 4.8 out of 5 by 8,000+ customers</p>
