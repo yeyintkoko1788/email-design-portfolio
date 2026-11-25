@@ -9,6 +9,7 @@ export default function CaseLayout({
   children,
   next,
   back = '/#work',
+  backLabel = 'The issue',
 }: {
   no: string
   label: string
@@ -16,12 +17,14 @@ export default function CaseLayout({
   next?: { title: string; to: string }
   /** Where "← The issue" goes */
   back?: string
+  /** Text of the back link */
+  backLabel?: string
 }) {
   return (
     <div className="min-h-svh bg-paper-2">
       <header className="page-px fixed inset-x-0 top-0 z-[400] flex h-14 items-center justify-between gap-4 border-b border-ink/10 bg-paper-2/90 backdrop-blur">
         <Link to={back} data-cursor="BACK" className="label transition-colors hover:text-accent">
-          ← The issue
+          ← {backLabel}
         </Link>
         <Link to="/" aria-label="nang, home" className="absolute left-1/2 top-2.5 -translate-x-1/2">
           <Logo title="" className="h-auto w-[72px] text-accent" />

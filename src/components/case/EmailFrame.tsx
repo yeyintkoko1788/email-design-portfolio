@@ -3,10 +3,21 @@
  * `fit: 'contain'` letterboxes it on `bg` (for an animation whose shape
  * differs from the still it replaces).
  */
-export type Motion = { src: string; x: number; y: number; w: number; h: number; fit?: 'cover' | 'contain'; bg?: string }
+export type Motion = { src: string; x: number; y: number; w: number; h: number; fit?: 'cover' | 'contain'; bg?: string; radius?: string }
 
 /** The looping video itself, placed over its email image (which must sit in a relative box). */
 export function MotionOverlay({ motion }: { motion: Motion }) {
+  if (motion.src.endsWith('.gif')) {
+    return (
+      <img
+        src={motion.src}
+        alt=""
+        aria-hidden
+        className="absolute object-cover"
+        style={{ left: `${motion.x}%`, top: `${motion.y}%`, width: `${motion.w}%`, height: `${motion.h}%`, borderRadius: motion.radius }}
+      />
+    )
+  }
   return (
     <video
       src={motion.src}

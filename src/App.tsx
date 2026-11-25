@@ -2,6 +2,8 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import Home from './pages/Home'
 import Juiceday from './pages/Juiceday'
+import JuicedayLook from './pages/JuicedayLook'
+import JuicedayProcess from './pages/JuicedayProcess'
 import Vivaia from './pages/Vivaia'
 import Redesigns from './pages/Redesigns'
 import Concepts from './pages/Concepts'
@@ -34,6 +36,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/work/juiceday" element={<Juiceday />} />
+        <Route path="/work/juiceday/look" element={<JuicedayLook />} />
+        <Route path="/work/juiceday/process/:id" element={<JuicedayProcess />} />
         <Route path="/work/vivaia" element={<Vivaia />} />
         <Route path="/work/redesigns" element={<Redesigns />} />
         <Route path="/work/concepts" element={<Concepts />} />

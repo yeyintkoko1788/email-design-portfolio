@@ -24,7 +24,7 @@ export const redesigns: Redesign[] = [
     kind: 'Members email · New arrivals',
     before: `${IMG}/nike/original.jpg`,
     after: `${IMG}/nike/redesign.jpg`,
-    beforeNote: 'As it arrived in Gmail',
+    beforeNote: 'As it arrived in Gmail. Static capture; any animation isn’t shown.',
     // The product GIF sits at x 60–1140, y 2528–4245 of the 1200 × 5989 design
     motion: { src: `${IMG}/nike/nike-motion.mp4`, x: 5, y: 42.21, w: 90, h: 28.67 },
     points: [
@@ -35,10 +35,6 @@ export const redesigns: Redesign[] = [
       {
         problem: 'Two identical buttons competed for the same click.',
         fix: 'A clear order: one filled button, one outlined.',
-      },
-      {
-        problem: 'In Gmail, the middle images broke apart and the email was clipped, hiding the footer and unsubscribe link.',
-        fix: 'One product GIF instead of a stack of image slices, in a simpler, lighter layout.',
       },
       {
         problem: 'The swoosh overlapped the “Exclusive Access” headline.',

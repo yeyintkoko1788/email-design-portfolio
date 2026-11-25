@@ -1,5 +1,5 @@
 import CaseLayout, { CaseIntro } from '../components/case/CaseLayout'
-import EmailFrame from '../components/case/EmailFrame'
+import EmailFrame, { type Motion } from '../components/case/EmailFrame'
 import { Reveal, Rv } from '../components/Reveal'
 
 type Concept = {
@@ -12,7 +12,7 @@ type Concept = {
   /** What I did, as short numbered points */
   did: string[]
   /** One email, or two versions set up as an A/B test */
-  emails: { label: string; src?: string; note?: string }[]
+  emails: { label: string; src?: string; note?: string; motion?: Motion; wide?: boolean }[]
   test?: { change: string; expect: string; measure: string }
 }
 
@@ -34,16 +34,17 @@ const concepts: Concept[] = [
       'The headline says exactly where you are: “You’re 2 stamps away from a free one!”',
       'The stamp card is the picture: three cups, two question marks. Readable in a second, like the paper card at the counter.',
       'One reason to come now: double-stamp weekend, in the top bar and under the stamps.',
-      'One main button, “Order ahead”, and a quieter one for member perks.',
-      'Deep matcha green, cream and a serif, so the email and the poster feel like one café.',
+      'One main button, “Order ahead”, right under the stamps.',
+      'A drinks GIF shows that any drink counts, so the offer covers the whole menu.',
+      'Deep matcha green and cream, with Impact for headlines and a serif for text, as on the poster, so the email and the poster feel like one café.',
     ],
     emails: [
-      { label: 'Version A', src: `${IMG}/matcha/email-arch.jpg`, note: 'Arched photo' },
-      { label: 'Version B', src: `${IMG}/matcha/email-full.jpg`, note: 'Full-width photo' },
+      { label: 'Version A', src: `${IMG}/matcha/email-a.jpg`, note: 'Stamp card first', motion: { src: `${IMG}/matcha/drinks.gif`, x: 18.458, y: 31.261, w: 63.084, h: 35.252, radius: '7% / 4.5%' } },
+      { label: 'Version B', src: `${IMG}/matcha/email-b.jpg`, note: 'Photo first', motion: { src: `${IMG}/matcha/drinks.gif`, x: 18.458, y: 52.346, w: 63.084, h: 24.439, radius: '7% / 4.5%' } },
     ],
     test: {
-      change: 'Only the photo. A frames the drinks in an arch and keeps the stamp card higher; B runs the photo full width for more appetite.',
-      expect: 'B’s bigger photo makes the drink more tempting, but pushes the stamps lower. Which matters more?',
+      change: 'The opening. A has no photo hero: the stamp card leads, and the drinks GIF sits below the button. B opens with a full-width photo, then the stamp card and the same GIF.',
+      expect: 'B’s photo makes the drinks more tempting but pushes the stamps lower. A puts the offer first. Which gets more clicks?',
       measure: 'Clicks on “Order ahead”, then visits that weekend.',
     },
   },
@@ -51,21 +52,24 @@ const concepts: Concept[] = [
     id: 'museum',
     title: 'Museum exhibition',
     kind: 'Event email · Exhibition',
-    poster: `${IMG}/museum-poster-v2.jpg`,
+    poster: `${IMG}/museum-poster-v3.jpg`,
     posterNote: 'The exhibition poster',
     brief: [
       ['The idea', 'A launch email for a small museum’s new exhibition, “The Weight of Light”: four artists, opening 12 October.'],
       ['The challenge', 'Make a museum email feel like walking into the gallery, not reading a listing.'],
-      ['Why this brief', 'Art emails often bury the work under opening times. I wanted the paintings to lead.'],
+      ['Why this brief', 'Art emails often bury the work under opening times. Here the paintings lead.'],
     ],
     did: [
-      'The essentials first: title, opening date, one line on the theme, and “Get tickets”.',
-      'A reason to feel like an insider: subscribers get a preview evening the night before, with its own RSVP.',
-      'Selected works alternate painting and text, like walking past them on a wall: artist, medium, size and one line each.',
+      'The essentials first: title, opening date, one line on the theme, and “Get tickets”, repeated at the end.',
+      'Selected works alternate painting and text, like walking past them on a wall: artist, medium, size and one line each. On mobile they stack, text first, then the painting.',
       'A dark gallery brown for the art and warm paper cream for the practical parts, so you always know which is which.',
-      'Dates, hours and the address at the end, with the same ticket button.',
+      'Dates, hours and the address at the end, in one short block.',
+      'Built for Klaviyo: paintings as images, text and buttons as live text, and a separate stacked mobile version.',
     ],
-    emails: [{ label: 'The email', src: `${IMG}/museum/email.jpg`, note: 'Exhibition launch' }],
+    emails: [
+      { label: 'Desktop', src: `${IMG}/museum/email-desktop.jpg`, note: '600 px wide', wide: true },
+      { label: 'Mobile', src: `${IMG}/museum/email-mobile.jpg`, note: 'Stacked' },
+    ],
   },
 ]
 
@@ -98,7 +102,7 @@ export default function Concepts() {
               ))}
             </dl>
             <Rv i={5} className="mt-10">
-              <p className="label text-ink/60">What I did</p>
+              <p className="label text-ink/60">What was done</p>
               <ol className="mt-2 border-t border-ink/15">
                 {c.did.map((d, i) => (
                   <li key={i} className="grid grid-cols-[1.75rem_1fr] items-baseline border-b border-ink/15 py-3">
@@ -121,9 +125,13 @@ export default function Concepts() {
 
           {/* The email(s): they stay in view while you read the left side */}
           <div className="md:sticky md:top-20 md:col-span-6 md:col-start-7 md:self-start">
-            <Rv i={2} className={`grid gap-4 md:gap-6 ${c.emails.length > 1 ? 'grid-cols-2' : 'mx-auto max-w-sm'}`}>
+            <Rv
+              i={2}
+              className={`grid gap-4 md:gap-6 ${c.emails.length > 1 ? '' : 'mx-auto max-w-sm'}`}
+              style={c.emails.length > 1 ? { gridTemplateColumns: c.emails.map((e) => (e.wide ? '1.7fr' : '1fr')).join(' ') } : undefined}
+            >
               {c.emails.map((e, i) => (
-                <EmailFrame key={e.label} src={e.src} label={e.label} note={e.note} accent={i === 1} />
+                <EmailFrame key={e.label} src={e.src} label={e.label} note={e.note} accent={i === 1} motion={e.motion} />
               ))}
             </Rv>
             {c.test && (
@@ -133,8 +141,8 @@ export default function Concepts() {
                   {(
                     [
                       ['What changes', c.test.change],
-                      ['What I expect', c.test.expect],
-                      ['What I’d measure', c.test.measure],
+                      ['What to expect', c.test.expect],
+                      ['What to measure', c.test.measure],
                     ] as const
                   ).map(([term, text]) => (
                     <div key={term}>

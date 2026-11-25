@@ -14,7 +14,7 @@ const campaign: Stop = {
   color: '#F2C9D3',
   image: `${IMG}/campaign-redesign.jpg`,
 }
-const cart: Stop = { label: 'Cart email', line: 'The automatic reminder: “Still thinking about them?”', color: '#F6D7DF', image: '/emails/vivaia-cart/design.png' }
+const cart: Stop = { label: 'Cart email', line: 'Automated reminder after a shopper leaves items in the cart. Designed in Figma, coded in responsive HTML with Klaviyo cart tags.', color: '#F6D7DF', image: '/emails/vivaia-cart/design.png' }
 
 function EmailStop({ n, stop, i }: { n: number; stop: Stop; i: number }) {
   return (
@@ -40,15 +40,15 @@ function EmailStop({ n, stop, i }: { n: number; stop: Stop; i: number }) {
 const notes = [
   {
     title: 'The problem',
-    text: 'The original used Women’s Day as a banner, then turned into a generic sale: 56% off flats, product grids, unrelated promotions. People who opened it for Women’s Day got a discount catalogue instead.',
+    text: 'The original used Women’s Day as a banner, then turned into a generic sale: 56% off flats, product grids, unrelated promotions. Shoppers who opened it for Women’s Day found a discount catalogue instead.',
   },
   {
-    title: 'What I changed',
-    text: 'I rebuilt the email around one moment, the Lucky Card draw, with Women’s Day running from top to bottom: the hero introduces it, the rewards show what’s at stake, and one red button repeats the same action. I explored an illustrated and a photo-led hero; the photo won, because for a fashion brand the shoe does more work than any drawing.',
+    title: 'What changed',
+    text: 'The email is rebuilt around one moment, the Lucky Card draw, with Women’s Day running from top to bottom. The hero introduces it, the rewards show what is at stake, and one red button repeats the same action. An illustrated hero and a photo-led hero were both explored. The photo won: for a fashion brand, the shoe does more work than any drawing.',
   },
   {
-    title: 'What I kept',
-    text: 'The “Sale, New Arrival, Best Sellers” links, for people who opened the email but don’t care about the campaign. Always give them a second reason to click.',
+    title: 'What stayed',
+    text: 'The “Sale, New Arrival, Best Sellers” links stay for readers who opened the email but don’t care about the campaign. They always get a second reason to click.',
   },
 ]
 
