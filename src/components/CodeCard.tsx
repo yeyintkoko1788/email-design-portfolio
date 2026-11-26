@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from 'react'
 import { site } from '../data/site'
-// The real Klaviyo template; scripts/email-preview.py builds the live preview from it
-import cartEmailCode from '../emails/vivaia-cart.html?raw'
+// The sample version of the email, with one fixed shoe. realEmailNotes marks what the real one changes.
+import cartEmailCode from '../emails/vivaia-cart-sample.html?raw'
 
 const PREVIEW = '/emails/vivaia-cart/preview.html'
 const DESIGN = '/emails/vivaia-cart/design.png'
@@ -66,6 +66,21 @@ export default function CodeCard({ className = '' }: { className?: string }) {
   )
 }
 
+/**
+ * What the real email changes, shown in blue above the line it replaces.
+ * Each `find` matches the first line containing it after the previous match.
+ */
+const realEmailNotes = [
+  { find: '<!-- Cart item -->', note: 'one card per item left in the cart: {% for item in event.extra.line_items %} … {% endfor %}' },
+  { find: '<a href="https://www.vivaia.com/"', note: 'the link goes back to the checkout: {{ event.extra.checkout_url }}' },
+  { find: 'class="product-img"', note: 'their own photo: {{ item.product.images.0.src }}, alt {{ item.product.title }}' },
+  { find: '>Margot Mary Jane</p>', note: 'their product name: {{ item.product.title }}' },
+  { find: 'Size 38', note: 'their colour, size and quantity: {{ item.variant_title }} · Qty. {{ item.quantity|floatformat:0 }}' },
+  { find: '>$129</p>', note: 'their price: ${{ item.line_price|floatformat:-2 }}' },
+  { find: '>Complete My Order</a>', note: 'the button goes back to the checkout: {{ event.extra.checkout_url }}' },
+  { find: '<!-- Free shipping -->', note: "this line shows only over $99: {% if event|lookup:'$value' >= 99 %} … {% endif %}" },
+]
+
 /** The final design, scrollable inside the card. */
 function CartEmailDesign() {
   return (
@@ -96,10 +111,41 @@ function highlight(code: string) {
   return out
 }
 
+/** The code, highlighted, with each line the real email changes picked out in blue. */
+function withNotes(code: string) {
+  const out: ReactNode[] = []
+  let plain: string[] = []
+  let next = 0
+  const flush = () => {
+    if (plain.length) out.push(<span key={out.length}>{highlight(plain.join(''))}</span>)
+    plain = []
+  }
+  for (const line of code.split(/(?<=\n)/)) {
+    const note = realEmailNotes[next]
+    if (note && line.includes(note.find)) {
+      flush()
+      out.push(
+        <span key={out.length} className="my-1 block bg-[#7EC8FF]/15 px-2 py-1 break-words whitespace-pre-wrap text-[#7EC8FF]">
+          ▸ Real email: {note.note}
+        </span>,
+        <span key={out.length + 1} className="text-[#7EC8FF]">
+          {line}
+        </span>,
+      )
+      next += 1
+    } else plain.push(line)
+  }
+  flush()
+  return out
+}
+
 function CodeView({ code }: { code: string }) {
   return (
-    <pre className="no-scrollbar h-full overflow-auto bg-night p-5 font-mono text-[11.5px] leading-relaxed text-[#e8e2d6]">
-      <code>{highlight(code)}</code>
-    </pre>
+    <div className="flex h-full flex-col bg-night">
+      <p className="px-5 pt-4 pb-2 font-mono text-[11.5px] text-[#7EC8FF]">▸ Blue: what changes in the real email</p>
+      <pre className="no-scrollbar min-h-0 flex-1 overflow-auto px-5 pb-5 font-mono text-[11.5px] leading-relaxed text-[#e8e2d6]">
+        <code>{withNotes(code)}</code>
+      </pre>
+    </div>
   )
 }
